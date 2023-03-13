@@ -10,6 +10,8 @@ services:
       - ./mosquitto/log:/mosquitto/log
       - ./mosquitto/data:/mosquitto/data
     restart: unless-stopped
+    networks:
+      - host
   influxdb:
     image: influxdb:latest
     container_name: influxdb
@@ -58,7 +60,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     privileged: true
-    network_mode: host
+    networks:
+      - host
     depends_on:
       - mosquitto
   zigbee2mqtt:
@@ -95,3 +98,6 @@ services:
     restart: unless-stopped
 networks:
   iot:
+  host:
+    name: host
+    external: true
