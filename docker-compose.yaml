@@ -4,7 +4,6 @@ services:
   mosquitto:
     container_name: mosquitto
     image: eclipse-mosquitto
-    network-mode: host
     volumes:
       - ./mosquitto/config:/mosquitto/config
       - ./mosquitto/log:/mosquitto/log
