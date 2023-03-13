@@ -1,0 +1,7 @@
+mosquitto
+influxdb
+telegraf
+grafana
+homeassistant
+zigbee2mqtt
+wireguard
