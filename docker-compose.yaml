@@ -9,6 +9,7 @@ services:
       - "8081:8080"
     volumes:
       - "./trilium:/home/node/trilium-data"
+    restart: unless-stopped
   # IoT container
   mosquitto:
     container_name: mosquitto
