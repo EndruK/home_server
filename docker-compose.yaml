@@ -18,8 +18,7 @@ services:
       - ./mosquitto/log:/mosquitto/log
       - ./mosquitto/data:/mosquitto/data
     restart: unless-stopped
-    networks:
-      - host
+    network_mode: "host"
   influxdb:
     image: influxdb:latest
     container_name: influxdb
@@ -60,6 +59,8 @@ services:
     depends_on:
       - mosquitto
       - influxdb
+    networks:
+      - iot
   homeassistant:
     container_name: homeassistant
     image: 'ghcr.io/home-assistant/home-assistant:stable'
@@ -68,8 +69,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     privileged: true
-    networks:
-      - host
+    network_mode: "host"
     depends_on:
       - mosquitto
   zigbee2mqtt:
@@ -87,6 +87,8 @@ services:
       - /dev/ttyUSB0:/dev/ttyUSB0
     depends_on:
       - mosquitto
+    networks:
+      - iot
   # network container
   wireguard:
     image: lscr.io/linuxserver/wireguard:latest
@@ -106,6 +108,3 @@ services:
     restart: unless-stopped
 networks:
   iot:
-  host:
-    name: host
-    external: true
