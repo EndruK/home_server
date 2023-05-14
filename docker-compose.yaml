@@ -6,10 +6,11 @@ services:
     environment:
       - TRILIUM_DATA_DIR=/home/node/trilium-data
     ports:
-      - "8081:8080"
+      - "8088:8088"
     volumes:
       - "./trilium:/home/node/trilium-data"
     restart: unless-stopped
+    network_mode: "host"
   # IoT container
   mosquitto:
     container_name: mosquitto
