@@ -1,5 +1,14 @@
 version: '3.8'
 services:
+  trilium:
+    container_name: trilium
+    image: "zadam/trilium:latest"
+    environment:
+      - TRILIUM_DATA_DIR=/home/node/trilium-data
+    ports:
+      - "8081:8080"
+    volumes:
+      - "./trilium:/home/node/trilium-data"
   # IoT container
   mosquitto:
     container_name: mosquitto
